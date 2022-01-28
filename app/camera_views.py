@@ -1,30 +1,14 @@
 from app import app
 
 from flask import Response, render_template, make_response
-from app.camera_pi import Camera
-from threading import Thread
-import picamera
-import time
+from app.camera_pi import Camera, PictureCamera
 import os
-import datetime
 
-PATH_TO_PLANT = "app/static/img/plant/"
-HEIGHT =320
-WIDTH = 240
 
-def take_fotos():
-    camera = picamera.PiCamera()
-    camera.resolution = (WIDTH, HEIGHT)
-    time.sleep(2)
-    while False:
-        hour = int(datetime.datetime.now().strftime("%H"))
-        if hour < 22 and hour > 6:
-            camera.capture(PATH_TO_PLANT+ datetime.datetime.now().strftime("%Y%m%d_%H_%M_%S")+".jpg")
-        time.sleep(30*60)
-    camera.close()
+picture_camera = PictureCamera()
+picture_camera.start()
 
-tr1 = Thread(target=take_fotos)
-tr1.start()
+
 
 @app.route("/live-camera")
 def live_camera():
@@ -43,10 +27,14 @@ def video_feed():
     return Response(gen(Camera()), mimetype='multipart/x-mixed-replace; boundary=frame' ) 
    
 def get_pic_names():
-    """get all files from plant folder"""
+    """get all files from plant folder with specific ending"""
     files = os.listdir("app/static/img/plant")#
-    #print(files)
-    return files
+    files_ = []
+    for file in files:
+        if file.lower().endswith(".jpg"):
+            files_.append(file)
+
+    return list(reversed((sorted(files_))))
 
 def get_datetime_from_pic_names(filename):
     """format: YYYYMMDD_HH_MM_SS.jpg"""
@@ -64,6 +52,7 @@ def get_datetime_from_pic_names(filename):
 @app.route("/pflanze")
 def pflanze():
     pic_names = get_pic_names()
+    print(pic_names, "pic_names")
     dates = []
     for name in pic_names:
         dates.append(get_datetime_from_pic_names(name)) 
