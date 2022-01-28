@@ -1,0 +1,13 @@
+{% macro picture(label="", source="") -%}
+        <span class="boarder">
+        <img src="{{ "static/" ~ source }}" height=320 width=240>   
+        <div> {{ label }} </div>  
+        </span> 
+{%- endmacro %}
+
+{% macro foto(label="", source="") -%}
+        <span class="boarder">
+        <img src="{{ "static/" ~ source }}" height=320 width=240>   
+        <div> {{ label }} </div>  
+        </span> 
+{%- endmacro %}

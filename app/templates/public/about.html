@@ -1,0 +1,6 @@
+{% extends "public/templates/public_template.html" %}
+
+{% block title %} About {% endblock %}
+{% block main %} Die Seite geht um mich
+ <img src={{ url_for('static', filename='img/till.jpg') }} height = 160 weight=120> 
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "public/templates/public_template.html" %} <!-- vererbung vom public template-->
+
+{% block title %}Pflanzenbilder{% endblock %} <!-- füllt block title im Template Home aus-->
+
+{% block main %}
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h1>Pflanze</h1>
+      
+      <div class="row">
+      {% for file in pic_names %}
+          <div class="col-4">
+            <div class="container">
+              <div class="row">
+                <div class="col">
+                  <img src={{ url_for('static', filename='img/plant/' ~file) }} height=320 width=240> 
+                  {{ dates[loop.index-1] }} 
+                </div>
+             </div>
+            </div>    
+
+
+          </div>
+            {%if (loop.index % 3) == 0  %}
+          </div>
+          <div class="row">
+        {% endif %}     
+      {% endfor %}
+      
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

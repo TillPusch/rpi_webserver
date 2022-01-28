@@ -1,0 +1,17 @@
+{% extends "public/templates/public_template.html" %} <!-- vererbung vom public template-->
+
+{% block title %}Home{% endblock %} <!-- füllt block title im Template Home aus-->
+
+{% block main %}
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h1>Futterkamera</h1>
+      <img src="{{ url_for('video_feed') }}" height=420 width=500>
+      
+    </div>
+  </div>
+</div>
+
+{% endblock %}

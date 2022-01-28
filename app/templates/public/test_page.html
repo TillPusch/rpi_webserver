@@ -1,0 +1,48 @@
+{% extends "public/templates/public_template.html" %} <!-- vererbung vom public template-->
+
+{% block title %}Testzeite{% endblock %} <!-- füllt block title im Template Home aus-->
+
+{% block main %}
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h1>Testseite</h1>
+      <div class="row">
+        
+        <div class="col-4">
+            
+    
+        </div>
+        <div class="col-4"> 
+            <img src={{ url_for('static', filename='img/plant/1643136163.jpg') }} height=320 weight=240> 
+        </div>
+        <div class="col-4"> 
+            <img src={{ url_for('static', filename='img/plant/1643136163.jpg') }} height=320 weight=240> 
+        </div>
+        <div class="col-4"> 
+            <img src={{ url_for('static', filename='img/plant/1643136163.jpg') }} height=320 weight=240> 
+        </div>
+
+    </div>
+    <div class="row">
+        
+        <div class="col-3">
+            <img src={{ url_for('static', filename='img/plant/1643136163.jpg') }} height=320 weight=240> 
+        </div>
+        <div class="col-3"> 
+            <img src={{ url_for('static', filename='img/plant/1643136163.jpg') }} height=320 weight=240> 
+        </div>
+        <div class="col-3"> 
+            <img src={{ url_for('static', filename='img/plant/1643136163.jpg') }} height=320 weight=240> 
+        </div>
+        <div class="col-3"> 
+            <img src={{ url_for('static', filename='img/plant/1643136163.jpg') }} height=320 weight=240> 
+        </div>
+
+    </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
